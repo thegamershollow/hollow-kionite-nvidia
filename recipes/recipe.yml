@@ -17,8 +17,6 @@ modules:
     repos:
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-        - https://mirrors.neterra.net/rpmfusion/free/fedora/rpmfusion-free-release-43.noarch.rpm
-        - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
 
     install:
       packages:
@@ -39,8 +37,6 @@ modules:
         - okular
         - gwenview
         - gnome-disk-utility
-        - steam
-        - discord
 
     remove:
       packages:
@@ -50,8 +46,18 @@ modules:
 
   - type: script
     snippets:
+      # Enable RPM Fusion (must come before installing steam/discord)
+      - dnf5 install -y \
+          https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+          https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+      # Install Google Chrome
       - dnf5 install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-      - gem install colorls
+
+      # Install apps that depend on RPM Fusion
+      - dnf5 install -y steam discord
+      
+      # Enable Tailscale service
       - systemctl enable tailscaled
 
   - type: default-flatpaks
