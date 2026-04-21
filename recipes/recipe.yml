@@ -17,6 +17,7 @@ modules:
     repos:
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+        - https://mirrors.neterra.net/rpmfusion/free/fedora/rpmfusion-free-release-43.noarch.rpm
         - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
 
     install:
@@ -49,15 +50,8 @@ modules:
 
   - type: script
     snippets:
-      # Install Chrome
       - dnf5 install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-
-      # Install colorls without polluting system with build deps permanently
-      - dnf5 install -y @development-tools
       - gem install colorls
-      - dnf5 remove -y @development-tools
-
-      # Enable tailscale properly
       - systemctl enable tailscaled
 
   - type: default-flatpaks
