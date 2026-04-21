@@ -51,9 +51,10 @@ modules:
 
       # Chrome
       - dnf5 install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      - dnf5 install -y google-chrome-stable
 
       # Steam + Discord
-      - dnf5 install -y steam discord
+      - dnf5 install -y steam discord mangohud steam-devices gamemode
 
       # Colorls (temporary build tools)
       - dnf5 install -y @development-tools
