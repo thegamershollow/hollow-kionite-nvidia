@@ -48,10 +48,9 @@ modules:
   - type: script
     snippets:
       - sudo dnf5 install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-      - |
-      	sudo dnf5 install -y @development-tools
-      	sudo gem install colorls
-      	sudo dnf5 remove -y @development-tools
+      - sudo dnf5 install -y @development-tools
+      -	sudo gem install colorls
+      -	sudo dnf5 remove -y @development-tools
       - sudo systemctl enable tailscaled.service
       - sudo dnf5 install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && sudo dnf5 install steam discord
 
