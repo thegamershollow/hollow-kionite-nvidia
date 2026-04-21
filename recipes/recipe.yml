@@ -85,6 +85,5 @@ modules:
           - org.kde.kate
           - org.kde.okular
           - org.kde.gwenview
-          - org.kde.spectacle
 
   - type: signing
